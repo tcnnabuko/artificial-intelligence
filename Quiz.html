@@ -156,12 +156,80 @@ QqzZL6FjTVsvZbPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg2z99wDXbpxkEfQAAAABJRU5ErkJggg==" 
         <button onclick="nextQuestion(12)">Next</button>
     </div>
     <div class="card hidden" id="question13">
-	<h2>Question 13: Which of the following is a Higher-order Constraint? </h2>
-	<input type="radio" name="q13" value="A"> A) Sudoku<br>
-	<input type="radio" name="q13" value="B"> B) Tic-Tac-Toe<br>
-	<input type="radio" name="q13" value="C"> C) Chess<br>
-	<input type="radio" name="q13" value="D"> D) Checkers<br>
+	<h2>Question 13: Which of the following is an example of bias </h2>
+	<input type="radio" name="q13" value="A"> A) Engineering jobs with higher population of men than women<br>
+	<input type="radio" name="q13" value="B"> B) Number of passengers in a bus<br>
+	<input type="radio" name="q13" value="C"> C) Population of people in a country<br>
+	<input type="radio" name="q13" value="D"> D) Amount of food in a warehouse<br>
 	<button onclick="prevQuestion(13)">Previous</button>
+        <button onclick="nextQuestion(13)">Next</button>
+    </div>
+    <div class="card hidden" id="question14">
+	<h2>Question 14: AI systems are capable of controlling customer services: </h2>
+	<input type="radio" name="q14" value="A"> A)5 hours per day <br>
+	<input type="radio" name="q14" value="B"> B)8 hours per day <br>
+	<input type="radio" name="q14" value="C"> C)10 hours per day <br>
+	<input type="radio" name="q14" value="D"> D)Endlessly <br>
+	<button onclick="prevQuestion(14)">Previous</button>
+	<button onclick="nextQuestion(14)">Next</button>
+    </div>
+	<div class="card hidden" id="question15">
+	<h2>Question 15: All these are examples of binary constraints except: </h2>
+	<input type="radio" name="q15" value="A"> A)X + y= 15. <br>
+	<input type="radio" name="q15" value="B"> B)3x-y= 23. <br>
+	<input type="radio" name="q15" value="C"> C)5x= y. <br>
+	<input type="radio" name="q15" value="D"> D)x=7. <br>
+	<button onclick="prevQuestion(15)">Previous</button>
+	<button onclick="nextQuestion(15)">Next</button>
+    </div>
+	<div class="card hidden" id="question16">
+	<h2>Question 16: Which of the following describes fine tuning?</h2>
+	<input type="radio" name="q16" value="A"> A)Process of making small, precise adjustments to an AI system for it to adapt to a new 
+	environment.<br>
+	<input type="radio" name="q16" value="B"> B)An application that generates text when prompted <br>
+	<input type="radio" name="q16" value="C"> C)A Constraint Satisfaction Problem. <br>
+	<input type="radio" name="q16" value="D"> D)A Hardware Device <br>
+	<button onclick="prevQuestion(16)">Previous</button>
+	
+	<div class="card hidden" id="question17">
+	<h2>Question 17: P in PEAS stand for: </h2>
+	<input type="radio" name="q17" value="A"> A)Performance Measure <br>
+	<input type="radio" name="q17" value="B"> B)Environment <br>
+	<input type="radio" name="q17" value="C"> C)Actuators <br>
+	<input type="radio" name="q17" value="D"> D)Sensors <br>
+	<button onclick="prevQuestion(17)">Previous</button>
+	<button onclick="nextQuestion(17)">Next</button>
+    </div>
+
+	<div class="card hidden" id="question18">
+	<h2>Question 18: E in PEAS stand for: </h2>
+	<input type="radio" name="q18" value="A"> A)Performance Measure <br>
+	<input type="radio" name="q18" value="B"> B)Environment <br>
+	<input type="radio" name="q18" value="C"> C)Actuators <br>
+	<input type="radio" name="q18" value="D"> D)Sensors <br>
+	<button onclick="prevQuestion(18)">Previous</button>
+	<button onclick="nextQuestion(18)">Next</button>
+    </div>
+
+	<div class="card hidden" id="question19">
+	<h2>Question 19: S in PEAS stand for: </h2>
+	<input type="radio" name="q19" value="A"> A)Performance Measure <br>
+	<input type="radio" name="q19" value="B"> B)Environment <br>
+	<input type="radio" name="q19" value="C"> C)Actuators <br>
+	<input type="radio" name="q19" value="D"> D)Sensors <br>
+	<button onclick="prevQuestion(19)">Previous</button>
+	<button onclick="nextQuestion(19)">Next</button>
+    </div>
+
+	<div class="card hidden" id="question20">
+	<h2>Question 20: A in PEAS stand for: </h2>
+	<input type="radio" name="q20" value="A"> A)Performance Measure <br>
+	<input type="radio" name="q20" value="B"> B)Environment <br>
+	<input type="radio" name="q20" value="C"> C)Actuators <br>
+	<input type="radio" name="q20" value="D"> D)Sensors <br>
+	<button onclick="prevQuestion(20)">Previous</button>
+	<button onclick="nextQuestion(20)">Next</button>
+    </div>
         <button onclick="submitQuiz()">Submit</button>
     </div>
 </div>
@@ -189,6 +257,13 @@ QqzZL6FjTVsvZbPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg2z99wDXbpxkEfQAAAABJRU5ErkJggg==" 
 	q11: 'C',
 	q12: 'D',
 	q13: 'A',
+	q14: 'D',
+	q15: 'D',
+	q16: 'A',
+	q17: 'A',
+	q18: 'B',
+	q19: 'D',
+	q20: 'C',
     };
 
     function nextQuestion(questionNumber) {
@@ -211,7 +286,7 @@ QqzZL6FjTVsvZbPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg2z99wDXbpxkEfQAAAABJRU5ErkJggg==" 
         let resultsHtml = '';
         score = 0;
 
-        for (let i = 1; i <= 13; i++) {
+        for (let i = 1; i <= 20; i++) {
             const selected = document.querySelector(`input[name="q${i}"]:checked`);
             if (selected) {
                 const answer = selected.value;
@@ -233,14 +308,26 @@ QqzZL6FjTVsvZbPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg2z99wDXbpxkEfQAAAABJRU5ErkJggg==" 
 
     function displayPrize(score) {
         let prizeMessage = '';
-        if (score < 35) {
-            prizeMessage = "No rewards :(. Better Luck Next Time";
-        } else if (score >= 36 && score <= 50) {
-            prizeMessage = "Good Effort 🥉";
-        } else if (score >= 51 && score <= 60) {
-            prizeMessage = "Great 🥈";
-        } else if (score >= 60 && score <= 65) {
-            prizeMessage = "Awesome. You rock! 🥇👍";
+        if (score < 20) {
+            prizeMessage = "Last: No rewards :(. Better Luck Next Time";
+	} else if (score >= 20 && score <= 29) {
+            prizeMessage = "9th: No rewards :(. Better Luck Next Time";
+	} else if (score >= 30 && score <= 39) {
+            prizeMessage = "8th: No rewards :(. Better Luck Next Time";
+	} else if (score >= 40 && score <= 49) {
+            prizeMessage = "7th: No rewards :(. Better Luck Next Time";
+	} else if (score >= 50 && score <= 55) {
+            prizeMessage = "6th: No rewards :(. Better Luck Next Time";
+	} else if (score >= 56 && score <= 59) {
+            prizeMessage = "5th: No rewards :(. Better Luck Next Time";
+	} else if (score >= 60 && score <= 64) {
+            prizeMessage = "4th: No rewards :(. Better Luck Next Time";
+        } else if (score >= 65 && score <= 74) {
+            prizeMessage = "3rd: Good Effort 🥉";
+        } else if (score >= 75  && score <= 89) {
+            prizeMessage = "2nd: Great 🥈";
+        } else if (score >= 90 && score <= 100) {
+            prizeMessage = "1st: Awesome. You rock! 🥇👍";
         }
         document.getElementById('score').innerHTML += `<br>${prizeMessage}`;
     }
