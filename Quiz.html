@@ -1,0 +1,328 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+	body 
+	{
+            font-family: Arial, sans-serif;
+	    
+            margin: 0;
+            padding: 32px;
+	    background-color:lightgreen
+        }
+	nav {
+            background-color: white;
+            color: black;
+            padding: 11px;
+        }
+        nav a {
+            color: black;
+            margin: 0 20px;
+            text-decoration: none;
+	}
+	header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        .question-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+	    border-color: black;
+        }
+        .option {
+            margin: 10px 0;
+            padding: 8px;
+        }
+        .option:hover {
+            background-color: #f5f5f5;
+        }
+        .progress {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .submit-button {
+            background-color: #2ecc71;
+        }
+        .submit-button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+<header>
+	<img src="ENU Logo.jpg" alt="Logo" class="logo" width="160" height="95">
+<h1>Edinburgh Napier University Merchinston Campus AI Interactive Website</h1>	
+</header>
+
+<nav>
+    
+
+
+<ul class="navigation">
+    <a href="artificial-intelligence-main.html">Home</a>
+    <a href="artificial-intelligence.html">Notes </a>
+    <a href="gameprompt.html">Game</a>
+</ul>
+</nav>
+    <div class="question-container" id="quizContainer">
+        <div class="progress" id="progress"></div>
+        <div id="questionText"></div>
+        <div id="options"></div>
+        <div class="button-container">
+            <button id="prevButton" onclick="previousQuestion()" disabled>Previous</button>
+            <button id="nextButton" onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the full meaning of AI?",
+                options: ["Artificial Information", "Automated Intelligence", "Artificial Intelligence", "Automated Information"],
+                correctAnswer: "Artificial Intelligence"
+            },
+            {
+                question: " Reinforced Learning Human Feedback (RLHF) is used to:",
+                options: ["Train a reward model through preferences", "Print files", 
+		"Code Websites", "Order Products Online"],
+                correctAnswer: "Train a reward model through preferences"
+            },
+            {
+                question: "AI systems generate the following Except:",
+                options: ["Planets", "Photos", "Texts", "Chats"],
+                correctAnswer: "Planets"
+            },
+	    {
+		question: "When an action is randomly performed, that action is said to be:",
+		options: ["Deterministic", "Partly Observable", "Stochastic", "Static"],
+		correctAnswer: "Stochastic"
+	    },
+	    {
+		question: "Full meaning of LLM is:",
+		options: ["Long Lasting Models", "Large Language Models", 
+		"Love Language Models", "Large Line Modifications"],
+		correctAnswer: "Large Language Models"
+	    },
+	    {
+		question: "AI systems in computer simulate all of the following except:",
+		options: ["Comprehension", "Brick Laying", 
+		"Creativity", "Decision Making"],
+		correctAnswer: "Brick Laying"
+	    },
+	    {
+		question: "Which of the following is related to Turing Test?",
+		options: ["Collection Of Data", "Updating", 
+		"Shutting Down Computer Systems", "Testing a machine's capacity to mimic human's behaviour"],
+		correctAnswer: "Testing a machine's capacity to mimic human's behaviour"
+	    },
+	    {
+		question: "Which of the following is a unary constraint?",
+		options: ["X= 4", "X+Y= 7", 
+		"X-Y", "X|=Y"],
+		correctAnswer: "X= 4"
+	    },
+	    {
+		question: "In Constraint Satisfaction Problem,",
+		options: ["values must be assigned to variables and all constraints are to be satisfied", 
+		"variables must be assigned to values and all constraints are to be satisfied", 
+		"constraints must be assigned to variables and all values are to be satisfied", 
+		"values must be assigned to constraints and all variables are to be satisfied"],
+		correctAnswer: "values must be assigned to variables and all constraints are to be satisfied"
+	    },
+            {
+		question: "Applications and devices equipped with AI can ______ and _______ objects",
+		options: ["see, eat", "see, reduce", 
+		"see, identify", "sensor, identify"],
+		correctAnswer: "see, identify"
+	    },
+	    {
+		question: "Find the value of the unknown variable from the equation, 3X+7=28",
+		options: ["12", "9", "7", "5"],
+		correctAnswer: "7"
+	    },
+	    {
+		question: "The distribution of data in order for the model to generate new examples related to the dataset is called:",
+		options: ["BERT", "Turing Test", "Chat GPT", "Generative AI"],
+		correctAnswer: "Generative AI"
+	    },
+	    {
+		question: "Which of the following is an example of bias?",
+		options: ["Engineering jobs with higher population of men than women", "Number of passengers in a bus", 
+		"Population of people in planet Earth", "Amount of food in a warehouse"],
+		correctAnswer: "Engineering jobs with higher population of men than women"
+	    },
+	    {
+		question: "AI systems are capable of controlling customer services:",
+		options: ["5 hours per day", "8 hours per day", "10 hours per day", 
+		"Endlessly"],
+		correctAnswer: "Endlessly"
+	    },
+	    {
+		question: "All these are examples of binary constraints except:",
+		options: ["X + y= 15", "3x-y= 23", "5x= y", "x=7"],
+		correctAnswer: "x=7"
+	    },
+	    {
+		question: "Which of the following describes fine tuning?",
+		options: ["Process of making small, precise adjustments to an AI system for it to adapt to a new environment", 
+		"An application that generates text when prompted", 
+		"A Constraint Satisfaction Problem", "A Hardware Device"],
+		correctAnswer: 
+		"Process of making small, precise adjustments to an AI system for it to adapt to a new environment"
+	    },
+	    {
+		question: "P in PEAS stand for:",
+		options: ["Performance Measure", "Printing", "Perception", "Perfection"],
+		correctAnswer: "Performance Measure"
+	    },
+	    {
+		question: "E in PEAS stand for:",
+		options: ["Encryption", "Environment", "Elevation", "Evaluation"],
+		correctAnswer: "Environment"
+	    },
+	    {
+		question: "S in PEAS stand for:",
+		options: ["Site", "Spectrum", "Scalability", "Sensors"],
+		correctAnswer: "Sensors"
+	    },
+  	    {
+		question: "A in PEAS stand for:",
+		options: ["Approval", "Assessments", "Actuators", "Accelerators"],
+		correctAnswer: "Actuators"
+	    },
+	    {
+		question: "The following games are multi-agent except:",
+		options: ["Chess", "Battleships", "Wumpus World", "Snakes and Ladders"],
+		correctAnswer: "Wumpus World"
+	    },
+    	    {
+		question: "The following are partially observable except:",
+		options: ["Road", "Chess Board", "Baseball Pitch", "School"],
+		correctAnswer: "Chess Board"
+	    },
+	    {
+		question: "An agent is said to be dynamic when:",
+		options: ["An agent is hibernating", "An agent is climbing the stairs", 
+		"An agent is cleaning a room", "An agent is reading"],
+		correctAnswer: "An agent is climbing the stairs"
+	    },
+    	    {
+		question: "Turing Test was discovered in the year:",
+		options: ["1945", "1948", "1950", "None of the Above"],
+		correctAnswer: "1950"
+	    },
+            {
+		question: "The difference between deterministic and stochastic environment is that",
+		options: ["Stochastic environment involves random occurrence but deterministic environment does not.", 
+		"Deterministic environment involves random occurrence but stochastic environment does not.", 
+		"Deterministic environment is a single agent but stochastic environment is a multi agent.", 
+		"None of the Above"],
+		correctAnswer: "Stochastic environment involves random occurrence but deterministic environment does not."
+	    },
+        ];
+	   
+        
+        let currentQuestion = 0;
+        let userAnswers = new Array(questions.length).fill(null);
+
+        function displayQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('progress').innerHTML = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('questionText').innerHTML = `<h2>${question.question}</h2>`;
+            
+            const optionsHtml = question.options.map(option => `
+                <div class="option">
+                    <input type="radio" name="answer" value="${option}" id="${option}"
+                        ${userAnswers[currentQuestion] === option ? 'checked' : ''}>
+                    <label for="${option}">${option}</label>
+                </div>
+            `).join('');
+            
+            document.getElementById('options').innerHTML = optionsHtml;
+
+            // Update button states
+            document.getElementById('prevButton').disabled = currentQuestion === 0;
+            
+            const nextButton = document.getElementById('nextButton');
+            if (currentQuestion === questions.length - 1) {
+                nextButton.textContent = 'Submit';
+                nextButton.className = 'submit-button';
+            } else {
+                nextButton.textContent = 'Next';
+                nextButton.className = '';
+            }
+        }
+
+        function previousQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer) {
+                userAnswers[currentQuestion] = selectedAnswer.value;
+            }
+            
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            
+            if (!selectedAnswer) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            userAnswers[currentQuestion] = selectedAnswer.value;
+
+            if (currentQuestion === questions.length - 1) {
+                // Submit quiz
+                const results = questions.map((q, index) => ({
+                    question: q.question,
+                    userAnswer: userAnswers[index],
+                    correctAnswer: q.correctAnswer
+                }));
+                
+                localStorage.setItem('quizResults', JSON.stringify(results));
+                window.location.href = 'results.html';
+            } else {
+                currentQuestion++;
+                displayQuestion();
+            }
+        }
+
+        // Display first question when page loads
+        displayQuestion();
+    </script>
+</body>
+</html>

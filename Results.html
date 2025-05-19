@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+	body 
+	{
+            font-family: Arial, sans-serif;
+	    
+            margin: 0;
+            padding: 32px;
+	    background-color:lightgreen
+        }
+	nav {
+            background-color: white;
+            color: black;
+            padding: 11px;
+        }
+        nav a {
+            color: black;
+            margin: 0 20px;
+            text-decoration: none;
+	}
+	header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        .results-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .answer-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .correct {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .score-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .message {
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 10px;
+        }
+        .excellent {
+            color: #2ecc71;
+        }
+        .good {
+            color: #3498db;
+        }
+        .average {
+            color: #f1c40f;
+        }
+        .poor {
+            color: #e74c3c;
+        }
+        .retry-button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        .retry-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<header>
+	<img src="ENU Logo.jpg" alt="Logo" class="logo" width="160" height="95">
+<h1>Edinburgh Napier University Merchinston Campus AI Interactive Website</h1>	
+</header>
+
+<nav>
+    
+
+
+<ul class="navigation">
+    <a href="artificial-intelligence-main.html">Home</a>
+    <a href="artificial-intelligence.html">Notes </a>
+    <a href="gameprompt.html">Game</a>
+</ul>
+</nav>
+    <div class="results-container">
+        <div class="score-container">
+            <h1>Quiz Results</h1>
+            <div id="score" class="score"></div>
+            <div id="message" class="message"></div>
+        </div>
+        <div id="answers"></div>
+        <div style="text-align: center;">
+            <button class="retry-button" onclick="location.href='gameprompt.html'">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        function getScoreMessage(percentage) {
+            if (percentage === 100) {
+                return {
+                    text: "Perfect Score! Congratulations on your outstanding performance! 🏆🎉💪",
+                    class: "excellent"
+                };
+            } else if (percentage >= 80) {
+                return {
+                    text: "Awesome Performance! You are really amazing! 😄🎉💪 ",
+                    class: "excellent"
+                };
+            } else if (percentage >= 70) {
+                return {
+                    text: "Good effort! Keep it up! 👍",
+                    class: "good"
+                };
+            } else if (percentage >= 50) {
+                return {
+                    text: "Fair attempt! Keep working harder for better performance 📚",
+                    class: "average"
+                };
+            } else {
+                return {
+                    text: " You know, it doesn't hurt to try again.",
+                    class: "poor"
+                };
+            }
+        }
+
+        window.onload = function() {
+            const results = JSON.parse(localStorage.getItem('quizResults'));
+            const answersContainer = document.getElementById('answers');
+            const scoreContainer = document.getElementById('score');
+            const messageContainer = document.getElementById('message');
+
+            if (results) {
+                let correctCount = 0;
+                
+                const resultsHtml = results.map((result, index) => {
+                    const isCorrect = result.userAnswer === result.correctAnswer;
+                    if (isCorrect) correctCount++;
+                    
+                    return `
+                        <div class="answer-item">
+                            <h3>Question ${index + 1}: ${result.question}</h3>
+                            <p>Your answer: <span class="${isCorrect ? 'correct' : 'incorrect'}">${result.userAnswer}</span></p>
+                            <p>Correct answer: <span class="correct">${result.correctAnswer}</span></p>
+                        </div>
+                    `;
+                }).join('');
+
+                const score = ((correctCount ) * 4);
+                const scoreMessage = getScoreMessage(score);
+                
+                scoreContainer.innerHTML = `${score}%<br>(${correctCount} out of ${results.length} correct)`;
+                messageContainer.innerHTML = scoreMessage.text;
+                messageContainer.className = `message ${scoreMessage.class}`;
+                
+                answersContainer.innerHTML = resultsHtml;
+            } else {
+                answersContainer.innerHTML = '<p>No results found. Please take the quiz first.</p>';
+            }
+
+            localStorage.removeItem('quizResults');
+        };
+    </script>
+</body>
+<footer style="background-color: white; color: #333; padding: 20px; text-align: center;">
+    <div class="footer-content">
+        <p><b>&copy; 2025 Edinburgh Napier University Merchinston. All rights reserved.</p></b>
+        <ul class="footer-links">
+            <a href="mailto:reception@napier.ac.uk">Contact Us</a>
+        </ul>
+    </div>
+
+</html>
