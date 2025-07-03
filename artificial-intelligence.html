@@ -17,20 +17,31 @@
             margin: 0 20px;
             text-decoration: none;
         }
-	header 
-	{ 
-	display: flex;
+	header {
+            display: flex;
             align-items: center;
-            padding: 10px;
-            background-color: #f8f9fa; 
-	}
+            padding: 30px;
+            background-color: #FF3300;
+	    color: white;
+        }
         body 
 	{
             font-family: Arial, sans-serif;
 	    
             margin: 0;
             padding: 32px;
-	    background-color:lightgreen
+	    background-image: url('WorkingonComputer.jpg');
+	    background-repeat: no-repeat;
+  	    background-size: cover;
+        }
+	.box-container {
+	    background-color: white;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+	    border-color: black;
         }
 	</style>
 </head>
@@ -49,6 +60,7 @@
     <a href="gameprompt.html">Game</a>
 </ul>
 </nav>
+<div class="box-container" id="AIContainer">
 <h1 style = "text-align: center;">What You Need To Know 📚</h1>
 <h3>Artificial Intelligence</h3>
 <hr>
@@ -89,8 +101,9 @@ adapt to a new task.</p>
 
 <h3>Single and Multi Agent</h3>
 <hr>
-<p>A single-agent system operates independently to accomplish specific tasks.
-A multi-agent AI system consists of multiple AI entities that work collaboratively to solve 
+<p>A single-agent system operates independently to accomplish specific tasks. A single agent can be a single player game like Wumpus World and 
+certain Nintendo games like Metroid, Legend of Zelda, Elevator Action, etc.</p>
+<p>A multi-agent AI system consists of multiple AI entities that work collaboratively to solve 
 complex problems. A multi-agent can be cooperative like a contra game, or competitive like
 street fighter, snakes and ladders, chess,etc.</p>
 <h3>Fully- Observable and Partially Observable</h3>
@@ -129,7 +142,7 @@ being carried out by the agent. Otherwise, the agent is dynamic. </p>
 <p>In a company where bias is the most rampant, AI tools have learned to believe that women are more skilled than men and white people are
 more educated than black people.</p>
 
-
+</div>
 </body>
 <footer style="background-color: #333; color: white; padding: 20px; text-align: center;">
     <div class="footer-content">
