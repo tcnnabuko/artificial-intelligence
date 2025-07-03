@@ -9,8 +9,9 @@
 	header {
             display: flex;
             align-items: center;
-            padding: 10px;
-            background-color: #f8f9fa;
+            padding: 30px;
+            background-color: #FF3300;
+	    color: white;
         }
 
         body 
@@ -19,7 +20,10 @@
 	    
             margin: 0;
             padding: 32px;
-	    background-color:lightgreen
+	    background-repeat: round;
+	    background-image: url('Joystick.jpg');
+	    background-size: 10% 10%;
+	   
         }
 
 	.logo
@@ -46,14 +50,25 @@ a.button {
     font-size:58;
     height:68px;
     border-radius: 10px;
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
 a.button:hover {
     background-color: #3e8e41;
+}
+.box-container {
+	    background-color: #CCCCCC;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+	    border-color: black;
+        }
+.horizontal-center {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 </style>
 </head>
@@ -74,10 +89,15 @@ a.button:hover {
     <a href="gameprompt.html">Game</a>
 </ul>
 </nav>
-
-  <div class="center">
-<a href="Quiz.html" class="button">Start Game</a>
-
+<div class="box-container" id="AIContainer">
+<h1 style = "text-align: center;">Welcome to the Official Game Site 🎮</h1>
+<h3 style = "text-align: center;">Come test your knowledge on this quiz-based game by clicking the button below.</h3>
 </div>
+<div class="container">
+  <div class="horizontal-center">
+<a href="Quiz.html" class="button">Start Game</a>
+</div>
+</div>
+
 </body>
 </html>
