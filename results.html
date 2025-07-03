@@ -11,7 +11,7 @@
 	    
             margin: 0;
             padding: 32px;
-	    background-color:#ADD8E6
+	    background-color:#000080;
         }
 	nav {
             background-color: white;
@@ -24,10 +24,12 @@
             text-decoration: none;
 	}
 	header {
-            display: flex;
+           display: flex;
             align-items: center;
-            padding: 10px;
-            background-color: #f8f9fa;
+            padding: 30px;
+            background-color: #FF3300;
+	    color: white;
+
         }
         .results-container {
             max-width: 600px;
@@ -59,12 +61,12 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .score {
-            font-size: 2em;
+            font-size: 19;
             font-weight: bold;
             margin: 10px 0;
         }
         .message {
-            font-size: 1.2em;
+            font-size: 19;
             margin: 15px 0;
             padding: 10px;
         }
@@ -118,11 +120,12 @@
         </div>
         <div id="answers"></div>
         <div style="text-align: center;">
-            <button class="retry-button" onclick="location.href='gameprompt.html'">Try Again</button>
+            <button class="retry-button" onclick="location.href='Quiz.html'">Try Again</button>
         </div>
     </div>
 
     <script>
+	//Message based on Performance
         function getScoreMessage(percentage) {
             if (percentage === 100) {
                 return {
@@ -146,12 +149,12 @@
                 };
             } else {
                 return {
-                    text: " You know, it doesn't hurt to try again.",
+                    text: "<p>Oops.</p><p> You know, it doesn't hurt to try again.</p>",
                     class: "poor"
                 };
             }
         }
-
+	
         window.onload = function() {
             const results = JSON.parse(localStorage.getItem('quizResults'));
             const answersContainer = document.getElementById('answers');
@@ -164,7 +167,8 @@
                 const resultsHtml = results.map((result, index) => {
                     const isCorrect = result.userAnswer === result.correctAnswer;
                     if (isCorrect) correctCount++;
-                    
+
+                    //Reviews quiz data from Quiz.html
                     return `
                         <div class="answer-item">
                             <h3>Question ${index + 1}: ${result.question}</h3>
@@ -174,13 +178,14 @@
                     `;
                 }).join('');
 
+		//Multiplies any correct answer by 4
                 const score = ((correctCount ) * 4);
                 const scoreMessage = getScoreMessage(score);
                 
                 scoreContainer.innerHTML = `${score}%<br>(${correctCount} out of ${results.length} correct)`;
                 messageContainer.innerHTML = scoreMessage.text;
                 messageContainer.className = `message ${scoreMessage.class}`;
-                
+                //If no quiz data is found, an error message will be displayed
                 answersContainer.innerHTML = resultsHtml;
             } else {
                 answersContainer.innerHTML = '<p>No results found. Please take the quiz first.</p>';
